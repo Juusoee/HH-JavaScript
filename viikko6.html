@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Viikko 6</title>
+
+	<!-- Lomakekenttien laitto vasemmalta tasan -->
+	<style>
+		label {
+			display: block;
+			width: 6em;
+			float: left;
+		}
+	</style>
+
+</head>
+
+<body>
+	<h3>Tehtävä 1</h3>
+
+
+	<div id="tehtava1"></div>
+
+	<script>
+		var opiskelija = {
+			"tunnus": "a1234567",
+			"nimi": {
+				"etunimi": "Pekka",
+				"sukunimi": "Virtanen",
+			},
+			"osoite": {
+				"lahiosoite": "Virtakatu 11",
+				"postinumero": "12345",
+				"postitoimipaikka": "Virtala",
+			},
+			"puhelimet": [
+				{ "numero": "050-123456", "tyyppi": "työ" },
+				{ "numero": "050-7654321", "tyyppi": "henkilökohtainen" },
+				{ "numero": "050-1234321", "tyyppi": "salainen" }
+			],
+		};
+
+		function listaa() {
+
+
+			var teksti = "Tunnus: " + opiskelija.tunnus + "<br>" + "Nimi: " + opiskelija.nimi.etunimi + " " + opiskelija.nimi.sukunimi + "<br>"
+				+ "Osoite: " + opiskelija.osoite.lahiosoite + " " + opiskelija.osoite.postinumero + " " + opiskelija.osoite.postitoimipaikka;
+
+			document.getElementById("tehtava1").innerHTML = teksti;
+		}
+		listaa();
+	</script>
+	<h3>Tehtävä 2</h3>
+
+	<div id="tehtava2"></div>
+
+	<script>
+		var kurssit = [
+			{
+				"nimi": "Orientaatio digitaalisiin palveluihin",
+				"tunnus": "DIG1TA001",
+				"laajuus": 5,
+				"ajoitus": "1. lukukausi"
+			},
+			{
+				"nimi": "Orientaatio ohjelmistotuotantoon",
+				"tunnus": "SWD1TA001",
+				"laajuus": 5,
+				"ajoitus": "1. lukukausi"
+			},
+			{
+				"nimi": "Orientaatio ICT ja liiketoiminta",
+				"tunnus": "BIG1TA001",
+				"laajuus": 5,
+				"ajoitus": "1. lukukausi"
+			},
+			{
+				"nimi": "Orientaatio ICT-infrastruktuuriin",
+				"tunnus": "ICT1TA010",
+				"laajuus": 5,
+				"ajoitus": "1. lukukausi"
+			},
+			{
+				"nimi": "Ruotsin kielioppi ja rakenteet",
+				"tunnus": "SWE8TA062",
+				"laajuus": 3,
+				"ajoitus": "1. lukukausi"
+			},
+			{
+				"nimi": "Työvälineet myynnin ja palvelun ympäristössä",
+				"tunnus": "SAL1TA001",
+				"laajuus": 5,
+				"ajoitus": "1. lukukausi",
+			}
+		];
+
+		function kurssilista() {
+
+			var teksti = "";
+
+			for (var i = 0; i < kurssit.length; i++) {
+				teksti = teksti + "Tunnus: " + kurssit[i].tunnus + "<br>";
+				teksti = teksti + "Nimi: " + kurssit[i].nimi + "<br>";
+				teksti = teksti + "Laajuus: " + kurssit[i].laajuus + "<br>";
+				teksti = teksti + "Ajoitus: " + kurssit[i].ajoitus + "<br>" + "<br>";
+			}
+
+			document.getElementById("tehtava2").innerHTML = teksti;
+		}
+		kurssilista();
+
+	</script>
+
+	<h3>Tehtävä 3</h3>
+
+	<div id="tehtava3"></div>
+
+	<script>
+
+		var opiskelija = {
+			"tunnus": "a1234567",
+			"nimi": {
+				"etunimi": "Pekka",
+				"sukunimi": "Virtanen",
+			},
+			"osoite": {
+				"lahiosoite": "Virtakatu 11",
+				"postinumero": "12345",
+				"postitoimipaikka": "Virtala",
+			},
+			"puhelimet": [
+				{ "numero": "050-123456", "tyyppi": "työ" },
+				{ "numero": "050-7654321", "tyyppi": "henkilökohtainen" },
+				{ "numero": "050-1234321", "tyyppi": "salainen" },
+
+			],
+		};
+		function puhnro() {
+
+			var teksti = "Tunnus: " + opiskelija.tunnus + "<br>" + "Nimi: " + opiskelija.nimi.etunimi + " " + opiskelija.nimi.sukunimi + "<br>"
+				+ "Osoite: " + opiskelija.osoite.lahiosoite + " " + opiskelija.osoite.postinumero + " " + opiskelija.osoite.postitoimipaikka;
+			var pnro = "";
+
+			for (var i = 0; i < opiskelija.puhelimet.length; i++) {
+				if (opiskelija.puhelimet[i].tyyppi != "salainen") {
+					pnro = pnro + opiskelija.puhelimet[i].numero + " " + "(" + opiskelija.puhelimet[i].tyyppi + ")" + " ";
+				} else {
+					document.getElementById("tehtava3").innerHTML = teksti + "<br>" + "Puhelimet: " + pnro;
+				}
+			}
+		}
+		puhnro();
+	</script>
+
+	<h3>Tehtävä 4</h3>
+
+	<div id="tehtava4"></div>
+
+	<script>
+		function saatiedot() {
+
+			fetch("http://api.openweathermap.org/data/2.5/weather?lang=fi&q=helsinki&units=metric&APPID=4652702abfcf1685b652f56b62da346e")
+				// Muunnetaan vastaus JSON muotoon
+				.then(function (response) {
+					return response.json();
+				})
+			
+				.then(function (responseJson) {
+					document.getElementById("tehtava4").innerHTML = "<b>Helsinki</b>"+"<br>"+"<p>"+responseJson.weather[0].description+
+						"<br>"+"Lämpötila: "+responseJson.main.temp+"°"+"<br>"+"Tuuli: "+responseJson.wind.speed+" m/s"+"<br>"+"Pilvisyys: "
+						+responseJson.clouds.all+"%";
+					
+				})
+				// Jos tuli jokin virhe
+				.catch(function (error) {
+					document.getElementById("tehtava4").innerHTML = "Ei säätietoja";
+				})
+		}
+
+		saatiedot();
+	</script>
+</body>
+
+</html>

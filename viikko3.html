@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://myy.haaga-helia.fi/~swd1ta001/koodit/samatNopat.html -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Viikko 3</title>
+	<!-- 
+ Tee ohjelma, mikä arpoo kaksi noppalukua niin kauan kunnes
+ molemmat noppaluvut ovat samoja. Lopuksi ohjelma kertoo,
+ montako kertaa arvonta piti tehdä.
+ -->
+</head>
+
+<body>
+	<h3>Samat nopat</h3>
+
+	<div id="vastaus"></div>
+
+	<script type="text/javascript">
+		// Arvotaan nopat 
+		var noppa = Math.round((Math.random() * 5) + 1);
+		var noppa2 = Math.round((Math.random() * 5) + 1);
+		// Arvontojen lukumäärä
+		var lkm = 1;
+		// Silmukkaa suoritetaan niin kauan kuin nopat ovat erit
+		while (noppa != noppa2) {
+			noppa = Math.round((Math.random() * 5) + 1);
+			noppa2 = Math.round((Math.random() * 5) + 1);
+			lkm = lkm + 1;
+
+		}
+		// Näytetään vastaus
+		document.getElementById("vastaus").innerHTML = "Arvontoja oli " + lkm + " kappaletta."
+	</script>
+
+	<h3>Avainluvut</h3>
+
+	<div id="vastaus2"></div>
+
+	<script type="text/javascript">
+
+		//muuttujat
+
+		var teksti = "";
+		var numero;
+
+		//silmukka
+
+		for (var i = 1; i <= 100; i++) {
+			numero = Math.round((Math.random() * 9998) + 1);
+			teksti = teksti + numero + " "
+			if (i % 10 == 0)
+				teksti = teksti + "<br>"
+		}
+
+		// Vastaus
+		document.getElementById("vastaus2").innerHTML = teksti
+	</script>
+	<style>
+		label {
+			display: block;
+			width: 9em;
+			float: left;
+		}
+	</style>
+	<h3>Veto painonpudotuksesta</h3>
+
+	<form>
+		<label>Lähtöpaino:</label>
+		<input type="text" id="paino" size="5">
+		<input type="button" value="Näytä tavoitepainot" onclick="naytaTavoitepainot()">
+	</form>
+
+	<div id="vastaus3"></div>
+
+	<script>
+		// Funktio, jota painike kutsuu
+		function naytaTavoitepainot() {
+
+			var paino = document.getElementById("paino").value;
+			var teksti = ""
+			painonlasku = paino * 0.1 / 7;
+
+
+			// Käsittely
+			for (var i = 1; i <= 7; i++) {
+				paino = paino - painonlasku
+				teksti = teksti + i + ". viikon jälkeen " + paino.toFixed(2) + "<br>"
+			}
+			document.getElementById("vastaus3").innerHTML = "<p> " + teksti + "</p>";
+		}
+
+
+	</script>
+
+
+	<h3>D'Hondtin menetelmä</h3>
+
+	<form>
+		<label>Kokonaisäänimäärä:</label>
+		<input type="text" id="kokonaismaara" size="10">
+
+		<br><br><label>Ehdokkaiden määrä:</label>
+		<input type="text" id="ehdokkaidenmaara" size="5">
+		<br><br><input type="button" value="Näytä vertausluvut" onclick="naytavertausluvut()">
+	</form>
+
+	<div id="vastaus4"></div>
+
+	<script>
+		// Funktio, jota painike kutsuu
+		function naytavertausluvut() {
+
+			// ä on kokonaismäärä
+			// p ehdokkaan järjestysluku
+
+			// tee for silmukka, jossa vertausluku lasketaan vertausluku = kokonaismaara / i
+
+
+			var kokonaismaara = document.getElementById("kokonaismaara").value;
+			var ehdokkaidenmaara = document.getElementById("ehdokkaidenmaara").value;
+			var teksti = ""
+
+			// Käsittely
+			for (var i = 1; i <= ehdokkaidenmaara; i++) {
+				vertausluku = kokonaismaara / i
+				teksti = teksti + i + ". " + vertausluku.toFixed(0) + "<br>"
+
+			}
+			document.getElementById("vastaus4").innerHTML = "<p>" + teksti + " </p>";
+		}
+
+
+	</script>
+	<h3>Pelille tuottoa</h3>
+
+	<form>
+		<label>Kierrokset:</label>
+		<input type="text" id="kierrokset" size="10">
+		<input type="button" value="Pelaa" onclick="pelaa()">
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="vastaus5"></div>
+
+	<script>
+
+		function pelaa() {
+
+
+			var kierrokset = document.getElementById("kierrokset").value; // Kierrokset tai panos
+			var noppa6 = 0;
+			var noppa2tai4 = 0;
+
+
+			var i;
+
+
+
+			for (i = 1; i <= kierrokset; i++) {
+				noppa = Math.round((Math.random() * 5) + 1) // noppa
+
+				// jos noppa 6
+				if (noppa == 6) {
+					noppa6++;
+					// jos noppa 2 tai 4
+				} else if (noppa == 2 || noppa == 4) {
+					noppa2tai4++;
+					var kokonaisvoitto = (noppa6 * 1.5) + (noppa2tai4 * 1.25); //kokonaisvoitto
+					var tulos = kierrokset - kokonaisvoitto // tulos
+				}
+
+			}
+
+			document.getElementById("vastaus5").innerHTML = "Panokset oli " + kierrokset + "<br>"
+				+ "Maksetut voitot oli " + kokonaisvoitto + "<br>" + "Tulos oli " + tulos
+
+
+		}
+
+
+	</script>
+</body>
+
+</html>

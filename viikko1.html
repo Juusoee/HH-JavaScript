@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Viikko 1</title>
+
+ <!-- Lomakekenttien laitto vasemmalta tasan -->
+ <style>
+	label {
+		display: block;
+		width: 6em;
+		float: left; 
+	}
+</style>
+
+</head>
+<body> 
+	<h3>Tehtävä 1</h3>
+       
+	<form>
+		<label>Nettotulot: </label>
+		<input type="text" id="nettotulot" size="10">
+		<input type="button" value="Laske päiväsakko" onclick="laskePaivasakko()">
+		</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="vastaus"></div>
+	
+	 <script>
+	// Funktio, jota painike kutsuu
+	function laskePaivasakko() {
+
+	
+
+		// Lomakekentän arvo
+		var nettotulot = document.getElementById("nettotulot").value;
+
+		// Käsittely
+		
+		var sakko = (nettotulot-255)/60;
+		
+		// Vastauksen kirjoittaminen html-sivulle
+		document.getElementById("vastaus").innerHTML = "<p>Päivä sakko on " +sakko.toFixed(2);"</p>"
+	}
+	</script>
+	</style>
+	
+	</head>
+	<body> 
+		<h3>Tehtävä 2</h3>
+		   
+		<form>
+			<label>Paketin hinta: </label>
+			<input type="text" id="hinta" size="10">
+
+			<br><label>Määräaika: </label>
+			<input type="text" id="maaraAika" size="10">
+			<br><br><input type="button" value="Laske kokonaishinta" onclick="Kokonaishinta()">
+			</form>
+	
+		<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+		<div id="kokonaisHinta"></div>
+		
+		 <script>
+		// Funktio, jota painike kutsuu
+		function Kokonaishinta() {
+	
+		
+	
+			// Lomakekentän arvo
+			var hinta = document.getElementById("hinta").value;
+			var maaraAika = document.getElementById("maaraAika").value;
+	
+			// Käsittely
+			
+			var sopimuksenHinta = hinta * maaraAika;
+			
+			// Vastauksen kirjoittaminen html-sivulle
+			document.getElementById("kokonaisHinta").innerHTML = "<p>Päivä sakko on " +sopimuksenHinta.toFixed(2);"</p>"
+		}
+		</script>
+
+</head>
+<body> 
+	<h3>Tehtävä 3</h3>
+	   
+	<form>
+		<label>Vuokra: </label>
+		<input type="text" id="vuokra" size="10">
+
+		<br><label>Osallistujat: </label>
+		<input type="text" id="osallistujat" size="10">
+		<br><br><input type="button" value="Laske vuokra" onclick="mokinHinta()">
+		</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="mokinHinta"></div>
+	
+	 <script>
+	// Funktio, jota painike kutsuu
+
+	function mokinHinta() {
+	
+
+		// Lomakekentän arvo
+		var vuokra = document.getElementById("vuokra").value;
+		var osallistujat = document.getElementById("osallistujat").value;
+
+		// Käsittely
+		
+		var vuokraPerHenkilo = vuokra / osallistujat;
+		
+		// Vastauksen kirjoittaminen html-sivulle
+		document.getElementById("mokinHinta").innerHTML = "<p>Vuokra per henkilö on " +vuokraPerHenkilo.toFixed(2);" euroa</p>"
+	}
+	</script>
+</head>
+<body> 
+	<h3>Tehtävä 4</h3>
+	   
+	<form>
+		<label>Kilometrit: </label>
+		<input type="text" id="kilometrit" size="10">
+
+		<br><label>Kulutus: </label>
+		<input type="text" id="kulutus" size="10">
+		
+
+		<br><label>Litrahinta: </label>
+		<input type="text" id="litrahinta" size="10">
+
+
+		<br><label>Määrä: </label>
+		<input type="text" id="maara" size="10">
+		<br><br><input type="button" value="Laske" onclick="Kimppakyyti()">
+
+		</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="Kimppakyyti"></div>
+	
+	 <script>
+	// Funktio, jota painike kutsuu
+
+	function Kimppakyyti() {
+	
+
+		// Lomakekentän arvo
+		var km = document.getElementById("kilometrit").value;
+		var kul = document.getElementById("kulutus").value;
+		var litr = document.getElementById("litrahinta").value;
+		var x = document.getElementById("maara").value;
+
+		// Käsittely
+		
+		var polttoainePerHlö = kul / 100 * litr * km / x;
+		
+		// Vastauksen kirjoittaminen html-sivulle
+		document.getElementById("Kimppakyyti").innerHTML = "<p>Polttoaine per henkilö on " +polttoainePerHlö.toFixed(2);" euroa</p>"
+	}
+	</script>
+
+</head>
+<body> 
+	<h3>Tehtävä 5</h3>
+	   
+	<form>
+		<label>Bruttopalkka: </label>
+		<input type="text" id="bruttopalkka" size="10">
+
+		<br><label>Veroprosentti: </label>
+		<input type="text" id="veroprosentti" size="10">
+		<br><br><input type="button" value="Laske palkka" onclick="laskePalkka()">
+
+		</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="laskePalkka"></div>
+	
+	 <script>
+	// Funktio, jota painike kutsuu
+
+	function laskePalkka() {
+	
+
+		// Lomakekentän arvo
+		var bruttopalkka = document.getElementById("bruttopalkka").value;
+		var veroprosentti = document.getElementById("veroprosentti").value;
+
+		// Käsittely
+		
+		var veronosuus = bruttopalkka * veroprosentti / 100;
+		var tyel = bruttopalkka * 0.0675;
+		var tyotvk = bruttopalkka * 0.015;
+		var netto = bruttopalkka - veronosuus - tyel - tyotvk;
+
+		
+		// Vastauksen kirjoittaminen html-sivulle
+		document.getElementById("laskePalkka").innerHTML = "<p>Veron osuus on " +veronosuus.toFixed(2)+ "<br>Työeläkevakuutusmaksun osuus  " +tyel.toFixed(2)+"<br>Työttömyysvakuutuksen osuus " +tyotvk.toFixed(2)+ "<br> Käteen jää "+netto.toFixed(2);"</p>";
+	}
+	</script>
+	</body>
+
+</html>

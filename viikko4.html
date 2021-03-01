@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Viikko 4</title>
+
+	<!-- Lomakekenttien laitto vasemmalta tasan -->
+	<style>
+		label {
+			display: block;
+			width: 6em;
+			float: left;
+		}
+	</style>
+
+</head>
+
+<body>
+	<h3>Tehtävä 1</h3>
+
+	<form>
+		<label>Nimi:</label>
+		<input type="text" id="nimi" size="20">
+		<input type="button" value="Näytä" onclick="tehtava1()"><br><br>
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava1"></div>
+
+	<script>
+		// Funktio, jota painike kutsuu
+		function tehtava1() {
+
+			// Lomakekentän arvo
+			var nimi = document.getElementById("nimi").value;
+			var merkkienMaara = nimi.length;
+			var eka = nimi.charAt(0);
+			var kolmeEkaa = nimi.substr(0, 3);
+
+
+			// Käsittely
+			nimiSuurella = nimi.toUpperCase();
+			nimiPienella = nimi.toLowerCase();
+
+
+			// Vastauksen kirjoittaminen html-sivulle
+			document.getElementById("tehtava1").innerHTML = "Nimi suurella: " + nimiSuurella + "<br>"
+				+ "Nimi pienellä: " + nimiPienella + "<br>" + "Merkkien määrä: " + merkkienMaara + "<br>"
+				+ "Eka merkki: " + eka + "<br>" + "Kolme ekaa merkkiä: " + kolmeEkaa + "<br>";
+
+		}
+
+	</script>
+</body>
+
+<body>
+
+	<h3>Tehtävä 2</h3>
+
+	<form>
+		<label>Syntymävuosi: </label>
+		<input type="text" id="syntymavuosi" size="10">
+		<input type="button" value="Kerro ikä" onclick="tehtava2()"><br><br>
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava2"></div>
+
+	<script>
+		// Funktio, jota painike kutsuu
+		function tehtava2() {
+
+			// Lomakekentän arvo
+			var vuosi = document.getElementById("syntymavuosi").value;
+			var tanaan = new Date();
+
+			tanaan = tanaan.getFullYear();
+
+			ikasi = tanaan - vuosi;
+
+			if (vuosi > tanaan) {
+				document.getElementById("tehtava2").innerHTML = "Syntymävuosi ei voi olla tulevaisuudessa";
+			} else if (vuosi == tanaan) {
+				document.getElementById("tehtava2").innerHTML = "Olet tänä vuonna 1 vuotta.";
+			} else {
+				document.getElementById("tehtava2").innerHTML = "Olet tänä vuonna " + ikasi + " vuotta.";
+			}
+
+		}
+
+
+	</script>
+</body>
+
+<body>
+	<h3>Tehtävä 3</h3>
+
+	<form>
+		<label>Hetu: </label>
+		<input type="text" id="hetu" size="10">
+		<input type="button" value="Kerro" onclick="tehtava3()"><br><br>
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava3"></div>
+
+	<script>
+		// Funktio, jota painike kutsuu
+		function tehtava3() {
+
+			// Lomakekentän arvo
+			var hetu = document.getElementById("hetu").value;
+			var tunniste = hetu.charAt(9);
+			var paiva = hetu.substr(0, 2);
+			var kuukausi = hetu.substr(2, 2);
+			var vuosi = hetu.substr(4, 2);
+			var valimerkki = hetu.charAt(6);
+
+			// vuosisata - Olisi voinut käyttää parseInt
+			if (valimerkki == "-") {
+				vuosisata = "19";
+			} else if (valimerkki == "+") {
+				vuosisata = "18";
+			} else if (valimerkki == "A") {
+				vuosisata = "20";
+
+			}
+			{
+				//Mies vai nainen
+				if ((tunniste % 2) == 0) {
+					sukupuoli = "nainen";
+				} else {
+					sukupuoli = "mies";
+				}
+				document.getElementById("tehtava3").innerHTML = "Sukupuoli on " + sukupuoli + "." +
+					"<br>" + "Syntymäpäivä on " + paiva + "." + kuukausi + "." + vuosisata + vuosi + ".";
+
+			}
+
+		}
+	</script>
+</body>
+
+<body>
+	<h3>Tehtävä 4</h3>
+
+	<form>
+		<label>kesto:</label>
+		<input type="text" id="korvaus" size="5"> min <br><br>
+		<input type="button" value="Laske" onclick="tehtavanPainike()"><br><br>
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava4"></div>
+
+	<script>
+		// Funktio, jota painike kutsuu
+		function tehtavanPainike() {
+
+			var kaynninAika = document.getElementById("korvaus").value;
+			var kaynninHinta = laskeKorvaus(kaynninAika);
+			document.getElementById("tehtava4").innerHTML = "Kelakorvaus on " + kaynninHinta.toFixed(2);
+		}
+
+		function laskeKorvaus(kaynninAika) {
+
+			var kaynninHinta;
+
+			if (kaynninAika <= 10) {
+				kaynninHinta = 7.00;
+			} else if (kaynninAika <= 20) {
+				kaynninHinta = 9.00;
+			} else {
+				kaynninHinta = 11.00;
+
+			}
+			return kaynninHinta;
+		}
+
+	</script>
+</body>
+
+<body>
+	<h3>Tehtävä 5</h3>
+
+	<form>
+		<label>Matkakulut: </label>
+		<input type="text" id="kulut" size="10"> euroa<br><br>
+		<input type="button" value="Laske" onclick="tehtava5()">
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava5"></div>
+
+	<script>
+		// Funktio, jota painike kutsuu
+		function tehtava5() {
+
+			var kulut = document.getElementById("kulut").value;
+			var vahennys = palautuksenMaara(kulut);
+
+			document.getElementById("tehtava5").innerHTML = "<p> Vähennys on " + vahennys.toFixed(2);
+		}
+		function palautuksenMaara(kulut) {
+
+			var vahennys;
+			if (kulut < 750) {
+				vahennys = 0;
+			} else if (kulut > 750) {
+				vahennys = kulut - 750;
+			}
+			return vahennys;
+		}
+
+
+	</script>
+</body>
+
+<body>
+	<h3>Tehtävä 6</h3>
+
+	<form>
+		<label>Alkoi:</label>
+		<input type="text" id="alkoi" size="10"><br><br>
+		<label>Päättyi:</label>
+		<input type="text" id="paattyi" size="10"><br><br>
+		<input type="button" value="Näytä" onclick="tehtava6()">
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava6"></div>
+
+	<script>
+
+		function tehtava6() {
+
+			var alkoi = document.getElementById("alkoi").value;
+			var paattyi = document.getElementById("paattyi").value;
+			var tuntihinta = 48;
+
+			var kokonaisHinta = laskeTyoHinta(alkoi, paattyi, tuntihinta);
+
+			document.getElementById("tehtava6").innerHTML = "<br> Työn hinta on " + kokonaisHinta.toFixed(2);
+		}
+		function laskeTyoHinta(alkoi, paattyi, tuntihinta) {
+
+			var kokonaisHinta;
+
+			// tunnit
+			alkoiTunnit = alkoi.substr(0, 2);
+			loppuiTunnit = paattyi.substr(0, 2);
+
+			// minuutit
+
+			alkoiMinuutit = alkoi.substr(3);
+			loppuiMinuutit = paattyi.substr(3);
+
+			// työtunnit
+
+			kokonaisTunnit = loppuiTunnit - alkoiTunnit
+
+			// tyominuutit
+
+			tyominuutit = loppuiMinuutit - alkoiMinuutit;
+
+			// tyominuutit tunteina
+
+			tyominuutitTunteina = tyominuutit / 60;
+
+			// kokonaishinta
+
+			kokonaisHinta = ((tyominuutitTunteina + kokonaisTunnit) * tuntihinta);
+			return kokonaisHinta;
+		}
+	</script>
+</body>
+
+</html>

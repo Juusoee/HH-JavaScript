@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Viikko 5</title>
+
+	<!-- Lomakekenttien laitto vasemmalta tasan -->
+	<style>
+		label {
+			display: block;
+			width: 9em;
+			float: left;
+		}
+	</style>
+
+</head>
+
+<body>
+	<h3>Tehtävä 1</h3>
+
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava1"></div>
+
+	<script>
+		function nayta() {
+
+			var sademaarat = [47.0, 36.6, 34.7, 37.0, 41.9, 47.5, 61.7, 74.8, 65.4, 69.7, 66.1, 54.6];
+			var summa = 0;
+
+			for (var i = 0; i < sademaarat.length; i++)
+				summa = summa + sademaarat[i];
+			document.getElementById("tehtava1").innerHTML = "Helsingin sademäärä vuodessa on " + summa.toFixed(2) + " mm.";
+
+
+
+		}
+		nayta();
+
+	</script>
+
+	<h3>Tehtävä 2</h3>
+
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava2"></div>
+
+	<script>
+		function nayta2() {
+
+			var lampotilat = [-3.3, -4.7, -1.3, 3.9, 10.2, 14.6, 17.8, 16.3, 11.5, 6.6, 1.6, -2.0];
+			var summa = 0;
+			var teksti = "";
+
+			for (var i = 0; i < lampotilat.length; i++) {
+				teksti = teksti + (i + 1) + ". " + lampotilat[i].toFixed(1) + "<br>";
+				summa = summa + lampotilat[i];
+			}
+			var keskiarvo = summa / lampotilat.length;
+
+			document.getElementById("tehtava2").innerHTML = teksti + "<br>" + "Lämpötilojen keskiarvo on " + keskiarvo.toFixed(1);
+
+
+
+		}
+		nayta2();
+
+	</script>
+	<h3>Tehtävä 3</h3>
+	<form>
+		<label>Haettava veriryhmä:</label>
+		<input type="text" id="veriryhma" size="5">
+		<input type="button" value="Kerro" onclick="kerro()">
+	</form>
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava3"></div>
+
+	<script>
+		function kerro() {
+
+			var etsittava = document.getElementById("veriryhma").value;
+			var veriryhmat = ["A+", "O-", "AB+", "O+", "AB+", "AB+", "O-", "AB+", "O+", "AB+"];
+			var maara = 0;
+
+			for (var i = 0; i < veriryhmat.length; i++) {
+				if (veriryhmat[i] == etsittava) {
+					maara = maara + 1;
+				}
+
+			}
+			document.getElementById("tehtava3").innerHTML = "<p>" + "Veriryhmiä " + etsittava + " oli " + maara + " kappaletta." + "</p>";
+
+		}
+
+
+	</script>
+	<h3>Tehtävä 4</h3>
+
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava4"></div>
+
+	<script>
+		function nayta4() {
+
+			var kuvat = [
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/assi.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/myynti.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/tiko.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/yleinen1.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/yleinen2.jpg"
+			];
+
+			var teksti = "";
+
+			for (var i = 0; i < kuvat.length; i++) {
+				teksti = teksti + "<img src='" + kuvat[i] + "' alt='kuva' height='100' width='100'>"
+			}
+			document.getElementById("tehtava4").innerHTML = teksti;
+
+
+
+		}
+		nayta4();
+
+
+	</script>
+
+	<h3>Lisätehtävä</h3>
+
+
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="bonustehtava"></div>
+
+	<script>
+		// ohjelma toimii, mutta pystähtyy hetkeksi jos sama kuva tulee vastaan,
+		// kuinka tämän olisi voinut ratkaista? Samaan lopputulokseen pääsin while loopilla.
+		function vaihtuvaKuva() {
+
+			var vanhapaikka = 0, numero = 0;
+			var kuvat = [
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/assi.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/myynti.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/tiko.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/yleinen1.jpg",
+				"https://myy.haaga-helia.fi/~swd1ta001/kuvatJS/yleinen2.jpg"
+			];
+
+			vanhapaikka = numero;
+
+			for (i = 0; i < 5; i++) {
+				var numero = Math.floor(Math.random() * kuvat.length);
+
+
+			}
+			document.getElementById("bonustehtava").innerHTML = "<img src='" + kuvat[numero] + "' alt='kuva' height='100' width='100'>"
+
+		}
+		vaihtuvaKuva();
+		setInterval(vaihtuvaKuva, 2000);
+
+
+
+	</script>
+	<h3>Tehtävä 5</h3>
+	<form>
+		<label>nimi:</label>
+		<input type="text" id="mokkilaiset" size="15">
+		<input type="button" value="Lisää" onclick="lisaa()">
+		<input type="button" value="Arvo" onclick="arvo()">
+	</form>
+	<!-- Tänne kirjoitetaan vastaus JavaScriptillä -->
+	<div id="tehtava5"></div>
+
+	<script>
+		var nimet = [];
+		
+		function listaa() {
+			var teksti = "";
+
+			for (var i = 0; i < nimet.length; i++) {
+				teksti = teksti + nimet[i] + " ";
+
+			}
+			document.getElementById("tehtava5").innerHTML = "<p>Annetut nimet: " + teksti + "</p>";
+		}
+		
+	
+		function lisaa() {
+			var mokkilaiset = document.getElementById("mokkilaiset").value;
+			var paikka = nimet.length;
+			nimet[paikka] = mokkilaiset;
+
+			document.getElementById("mokkilaiset").value = "";
+
+			listaa();
+		}
+		function arvo() {
+			var voittaja = Math.floor(Math.random() * nimet.length);
+
+			document.getElementById("tehtava5").innerHTML = "<p>Annetut nimet: "+nimet.join(" ")+"<br>"+"Voittaja on " + nimet[voittaja]+"</p>";
+		}
+		listaa();
+	</script>
+</body>
+
+</html>
